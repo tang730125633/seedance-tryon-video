@@ -1,5 +1,0 @@
-===== heygen voice create --help =====
-{"error":{"code":"usage_error","message":"unknown command \"voice create\" for \"heygen\""}}
-
-===== heygen voice create --request-schema =====
-{"error":{"code":"usage_error","message":"unknown command \"voice create\" for \"heygen\""}}

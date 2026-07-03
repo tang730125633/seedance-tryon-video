@@ -1,0 +1,4 @@
+# Seedance 换装/换背景技能依赖
+# 安装： pip install -r requirements.txt
+runninghub-sdk>=1.1.9   # 调用 RunningHub AI App（换装 / 换背景）
+opencv-python           # 读视频分辨率/帧率/时长（cv2）

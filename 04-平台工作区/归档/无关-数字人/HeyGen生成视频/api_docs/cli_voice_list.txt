@@ -1,5 +1,0 @@
-===== heygen voice list --help =====
-{"error":{"code":"usage_error","message":"unknown command \"voice list\" for \"heygen\""}}
-
-===== heygen voice list --request-schema =====
-{"error":{"code":"usage_error","message":"unknown command \"voice list\" for \"heygen\""}}

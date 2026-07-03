@@ -2,14 +2,18 @@
 __pycache__/
 *.pyc
 
-# Secrets
+# ============ 敏感信息：绝不上传 ============
 .env
 .env.*
 secret*.env
 *_KEEP_SAFE.env
 99-敏感配置-勿上传/
 
-# Large generated media
+# ============ 本地项目工作区（不进技能仓库） ============
+# 客户素材、生成产出、平台实验、旧脚本等都归到这里，只留本地
+workspace/
+
+# ============ 大体积媒体 / 生成产物：默认不进 Git ============
 *.mp4
 *.mov
 *.m4v
@@ -17,25 +21,18 @@ secret*.env
 *.wav
 *.m4a
 *.aac
-
-# Generated outputs / logs
-02-生成产出/
-03-成品交付/
-91-运行记录与调试/
-换装视频测试/
-测试111换装测试/
 *.json
 *.log
 *.out
 
-# Tool state
+# ============ 例外：随技能分发的示例素材（供同事试跑） ============
+!references/示例素材/
+!references/示例素材/**
+
+# ============ 工具状态 ============
 .gstack/
 .claude/
 
-# Embedded third-party git repos (cloned upstream, not tracked here)
-90-AI脚本与代码/github_tryon_repos/CatV2TON/
-90-AI脚本与代码/github_tryon_repos/SwiftTry/
-github-export/seedance-video-tryon-playbook/
-
-# 打包产物（可从 skill-dist/seedance-tryon-video/ 源码重新生成）
-skill-dist/*.skill
+# ============ 打包产物（可从技能源码重新生成） ============
+dist/
+*.skill

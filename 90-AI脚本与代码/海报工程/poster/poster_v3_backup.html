@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3e4c4; --ink:#241f18; --ink2:#534a3c; --mist:#7d756a;
+  --red:#9c1318; --red2:#6f0c10; --redbright:#c2272d;
+  --gold:#b8893f; --gold2:#d9b771; --line:rgba(150,110,55,.55);
+  --card:rgba(238,224,193,.92);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#777;}
+.brush{font-family:"Ma Shan Zheng","Songti SC",serif;}
+.serif{font-family:"Noto Serif SC","Songti SC","STSong",serif;}
+.heavy{font-family:"Noto Serif SC","Songti SC",serif;font-weight:900;}
+.poster{
+  width:824px;margin:0 auto;position:relative;color:var(--ink);
+  background:var(--paper) url(assets/bg_full.png) top center/824px auto no-repeat;
+  font-family:"PingFang SC","Hiragino Sans GB","Heiti SC",sans-serif;overflow:hidden;
+}
+/* 下半截补水墨纹理，治"空" */
+.poster::before{content:"";position:absolute;left:0;right:0;top:1180px;bottom:0;z-index:1;
+  background:url(assets/bg_full.png) bottom center/824px auto no-repeat;opacity:.16;transform:scaleY(-1);}
+.poster::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,transparent 40%,rgba(180,120,50,.06) 75%,rgba(120,70,20,.12));}
+/* 外框 + 四角回纹 */
+.frame{position:absolute;inset:16px;border:1.5px solid var(--red);z-index:6;pointer-events:none;}
+.frame::after{content:"";position:absolute;inset:4px;border:1px solid var(--gold2);}
+.corner{position:absolute;width:34px;height:34px;z-index:7;border:3px solid var(--red);}
+.corner.tl{top:16px;left:16px;border-right:0;border-bottom:0;}
+.corner.tr{top:16px;right:16px;border-left:0;border-bottom:0;}
+.corner.bl{bottom:16px;left:16px;border-right:0;border-top:0;}
+.corner.br{bottom:16px;right:16px;border-left:0;border-top:0;}
+.wrap{position:relative;z-index:2;padding:40px 46px 30px;}
+
+/* 印章 */
+.seal{display:inline-flex;align-items:center;justify-content:center;background:var(--red);color:#fbe9c8;
+  font-family:"Ma Shan Zheng",serif;border-radius:5px;box-shadow:inset 0 0 0 2px rgba(251,233,200,.35);
+  letter-spacing:1px;transform:rotate(-3deg);}
+
+/* 品牌 */
+.brand{display:flex;align-items:center;gap:11px;}
+.brand .logo{width:46px;height:46px;border-radius:8px;background:var(--red);color:#f7e3bd;
+  display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:inset 0 0 0 2px var(--gold2);}
+.brand .bn{font-weight:800;font-size:20px;letter-spacing:2px;}
+.brand .bs{font-size:12px;color:var(--mist);letter-spacing:3px;margin-top:2px;}
+
+/* 头部 */
+.head{display:flex;justify-content:space-between;margin-top:30px;min-height:330px;}
+.head-l{flex:1;padding-top:4px;}
+.t-pre{font-size:26px;font-weight:900;letter-spacing:3px;color:var(--ink);font-family:"Noto Serif SC",serif;}
+.t-pre::before{content:"";display:inline-block;width:26px;height:4px;background:var(--red);vertical-align:middle;margin-right:12px;}
+.t-big{font-size:78px;line-height:1.02;color:var(--ink);margin:10px 0 0;font-weight:900;letter-spacing:1px;
+  text-shadow:2px 3px 0 rgba(120,70,20,.16);}
+.t-big em{color:var(--red);font-style:normal;font-family:"Ma Shan Zheng",serif;font-weight:400;
+  font-size:96px;text-shadow:2px 3px 0 rgba(124,14,18,.25);}
+.t-banner{display:inline-block;background:linear-gradient(180deg,var(--redbright),var(--red2));color:#fdeccb;
+  font-size:23px;font-weight:700;letter-spacing:5px;padding:10px 26px;margin-top:22px;
+  box-shadow:0 4px 0 rgba(124,14,18,.4);clip-path:polygon(0 0,100% 0,calc(100% - 14px) 100%,0 100%);}
+.t-desc{font-size:14px;color:var(--ink2);line-height:1.85;margin-top:20px;max-width:430px;letter-spacing:.5px;}
+.head-r{width:268px;flex:none;position:relative;display:flex;flex-direction:column;align-items:center;}
+.sp-frame{width:256px;height:300px;border-radius:14px;overflow:hidden;position:relative;
+  border:2px solid var(--gold2);box-shadow:0 6px 22px rgba(60,40,15,.28);background:#efe6d4;}
+.sp-frame::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 4px rgba(255,255,255,.5);}
+.sp-frame img{width:148%;height:148%;object-fit:cover;object-position:50% 8%;
+  margin-left:-24%;margin-top:-2%;}
+.sp-seal{position:absolute;top:-12px;right:6px;width:54px;height:54px;font-size:18px;line-height:1.05;text-align:center;z-index:3;padding:6px;}
+.sp-name{font-weight:800;font-size:17px;margin-top:12px;letter-spacing:1px;}
+.sp-name b{color:var(--red);font-size:25px;font-family:"Ma Shan Zheng",serif;margin-left:4px;}
+.sp-cred{font-size:11.5px;color:var(--ink2);line-height:1.7;margin-top:5px;text-align:center;}
+
+/* 分隔纹 */
+.divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:30px 0 6px;color:var(--gold);}
+.divider::before,.divider::after{content:"";height:1px;width:120px;background:linear-gradient(90deg,transparent,var(--gold));}
+.divider::after{transform:scaleX(-1);}
+.divider span{font-size:16px;}
+
+/* 价格卡 */
+.price{display:flex;align-items:stretch;gap:0;margin:24px 0 6px;background:rgba(255,250,238,.86);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(120,90,40,.1);}
+.price .cell{flex:1;padding:14px 6px;text-align:center;border-right:1px dashed var(--line);}
+.price .cell:last-child{border-right:0;}
+.price .lab{font-size:12px;color:var(--mist);letter-spacing:1px;}
+.price .v{font-size:19px;font-weight:800;margin-top:5px;}
+.price .v.old{color:#a89c86;text-decoration:line-through;font-weight:600;font-size:16px;}
+.price .now{background:linear-gradient(180deg,#fff4e0,#ffe9c9);flex:1.3;}
+.price .now .v{color:var(--red);font-size:17px;}
+.price .now .big{font-family:"Ma Shan Zheng",serif;font-size:46px;color:var(--red);line-height:1;}
+.incl{text-align:center;font-size:13px;color:var(--ink2);margin:12px 0 0;letter-spacing:1px;}
+.incl b{color:var(--red2);}
+
+/* 版块 */
+.sec{position:relative;margin-top:18px;background:var(--card);border:1px solid var(--line);
+  border-radius:12px;padding:15px 18px 17px;box-shadow:0 3px 12px rgba(120,90,40,.16);}
+.sec::before,.sec::after{content:"";position:absolute;width:18px;height:18px;border:2px solid var(--gold);}
+.sec::before{top:8px;left:8px;border-right:0;border-bottom:0;}
+.sec::after{bottom:8px;right:8px;border-left:0;border-top:0;}
+.sec-h{display:flex;align-items:center;gap:14px;padding-bottom:12px;margin-bottom:13px;
+  border-bottom:1.5px solid var(--line);position:relative;}
+.sec-no{width:48px;height:48px;flex:none;border-radius:8px;background:var(--red);color:#f7e3bd;
+  font-family:"Ma Shan Zheng",serif;font-size:30px;display:flex;align-items:center;justify-content:center;
+  box-shadow:inset 0 0 0 2px var(--gold2);transform:rotate(-2deg);}
+.sec-t{font-size:23px;font-weight:800;letter-spacing:1px;}
+.sec-t em{color:var(--red);font-style:normal;}
+.sec-b{display:flex;gap:16px;}
+.sec-pts{flex:1;}
+.sec-pts li{list-style:none;font-size:13.5px;line-height:2.0;color:#352f27;padding-left:20px;position:relative;}
+.sec-pts li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#d44, var(--red));}
+.sec-side{width:158px;flex:none;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.icon-ring{width:128px;height:128px;border-radius:50%;overflow:hidden;border:2px solid var(--gold2);
+  box-shadow:0 3px 10px rgba(120,90,40,.18);background:#fbf4e6;}
+.icon-ring img{width:100%;height:100%;object-fit:cover;}
+.help{width:100%;background:linear-gradient(180deg,rgba(194,39,45,.12),rgba(163,22,27,.05));
+  border:1px solid rgba(163,22,27,.45);border-radius:9px;padding:8px 9px 10px;text-align:center;}
+.help .ht{display:block;background:var(--red);color:#fbe9c8;font-size:12px;font-weight:700;
+  padding:3px 0;border-radius:6px;margin-bottom:7px;letter-spacing:2px;}
+.help .hctx{font-size:11.5px;color:var(--mist);margin-bottom:4px;}
+.help .harrow{font-size:12.5px;color:var(--red2);font-weight:700;line-height:1.85;text-align:left;padding-left:6px;}
+
+/* 适合谁 / 印章奖章 */
+.aud{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:4px;}
+.aud .a{display:flex;flex-direction:column;align-items:center;gap:8px;}
+.aud .med{width:66px;height:66px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#b51d22,#8c1014);
+  color:#fbe6c4;font-family:"Ma Shan Zheng",serif;font-size:24px;display:flex;align-items:center;justify-content:center;
+  box-shadow:inset 0 0 0 2px var(--gold2),0 4px 10px rgba(124,14,18,.3);text-align:center;line-height:1.05;}
+.aud .at{font-size:13.5px;font-weight:700;color:var(--ink);}
+
+/* 你将获得 */
+.gains{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;
+  display:grid;grid-template-columns:1fr 1fr;gap:4px 28px;box-shadow:0 3px 12px rgba(120,90,40,.1);}
+.gains li{list-style:none;font-size:14px;line-height:2.1;padding-left:26px;position:relative;font-weight:600;color:#352f27;}
+.gains li::before{content:"得";position:absolute;left:0;top:3px;width:19px;height:19px;background:var(--red);
+  color:#fbe9c8;font-size:11px;border-radius:4px;display:flex;align-items:center;justify-content:center;}
+
+/* CTA */
+.cta{margin-top:30px;background:linear-gradient(135deg,#b01c22,#7c0e12);border-radius:16px;padding:22px 24px;
+  color:#fdeccb;display:flex;align-items:center;gap:20px;position:relative;box-shadow:0 6px 20px rgba(124,14,18,.4);
+  border:1px solid var(--gold2);}
+.cta::before{content:"";position:absolute;inset:6px;border:1px solid rgba(217,183,113,.5);border-radius:11px;pointer-events:none;}
+.cta-l{flex:1;}
+.cta .cw{font-size:24px;font-weight:800;letter-spacing:2px;}
+.cta .cp{margin-top:8px;font-size:15px;}
+.cta .cp .big{font-family:"Ma Shan Zheng",serif;font-size:54px;color:#ffd97a;vertical-align:-6px;margin:0 2px;}
+.cta .cn{font-size:12px;opacity:.92;margin-top:8px;letter-spacing:1px;}
+.cta .qr{flex:none;text-align:center;}
+.cta .qr .qbox{background:#fff7ea;padding:8px;border-radius:10px;box-shadow:inset 0 0 0 2px var(--gold2);}
+.cta .qr img{width:116px;height:116px;display:block;}
+.cta .qr div{font-size:12px;margin-top:7px;letter-spacing:1px;}
+
+/* slogan */
+.slogan{text-align:center;margin:30px 0 4px;}
+.slogan .s{font-family:"Ma Shan Zheng",serif;font-size:42px;color:var(--red);letter-spacing:6px;
+  text-shadow:1px 2px 0 rgba(124,14,18,.18);}
+.deco-foot{display:block;width:100%;transform:scaleY(-1);opacity:.9;margin-top:10px;}
+.aigc{position:absolute;right:26px;bottom:20px;z-index:8;background:rgba(38,34,28,.4);color:#fff;
+  font-size:11px;padding:2px 9px;border-radius:5px;letter-spacing:1px;}
+</style>
+</head>
+<body>
+<div class="poster" id="poster">
+  <div class="frame"></div>
+  <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+  <div class="wrap" id="wrap"></div>
+  <img class="deco-foot" src="assets/deco_top.png">
+  <div class="aigc">AI 生成</div>
+</div>
+
+<script>
+const DATA = {
+  brand:{name:"数影AI科技", sub:"S H U Y I N G · A I", logo:"影"},
+  titlePre:"企业老板必须听的",
+  titleBig:'一堂<em>AI获客</em>课',
+  banner:"让客户搜索你 · 看见你 · 相信你",
+  desc:"从搜索曝光，到客户推荐，再到老板IP成交，<br>系统打通企业获客增长的全新入口。",
+  speaker:{img:"assets/speaker_full.png", seal:"主讲", name:'主讲<b>大树</b>',
+    cred:"数影人工智能科技创始人<br>15年传统行业落地经验<br>AI流量获客导师"},
+  price:[{lab:"开课时间",v:"6月6日 周六"},{lab:"开课地点",v:"长 沙"},{lab:"原价",v:"980元/人",cls:"old"}],
+  priceNow:{lab:"本次体验价", big:"99", unit:"元/人"},
+  include:"含 · 中午餐叙 + 线下实操交流 + 现场企业诊断",
+  sections:[
+    {no:"壹", title:'数影霸屏：让客户<em>一搜行业</em>就看到你', icon:"assets/icon_search.png",
+     points:["搜索时代客户都在搜，老板您的企业被搜到了吗","百度 / 抖音 / 小红书 / 视频号 多平台占位逻辑","企业如何铺垫精准获客关键词","如何布局品牌词·产品词·行业词·痛点词","如何让客户搜你时，看到的都是好评好内容"],
+     help:["客户一搜行业","看见你 · 了解你 · 来咨询"]},
+    {no:"贰", title:'GEO：让 <em>AI 主动推荐</em>你的企业产品', icon:"assets/icon_ai.png",
+     points:["未来客户不只是搜，还会直接问 AI——被 AI 回答是新流量入口","什么是 GEO？生成式引擎优化","DeepSeek·豆包·文心·通义·元宝 的推荐逻辑","如何让 AI 在回答里推荐你的企业和产品","如何用真品·案例·数据 优化 AI 对你的认知"],
+     help:["客户问 AI","AI 知道你 · 推荐你"]},
+    {no:"叁", title:'创始人 AI+IP：<em>老板亲自</em>成为流量入口', icon:"assets/speaker_half.png",
+     points:["信任成交越来越难，本质是信任越来越贵","老板个人 IP 如何快速打造","如何用 AI 辅助生产专业内容","如何用 AI 批量生成口播 / 短视频","如何用 AI 放大老板影响力·案例·成交"],
+     help:["老板有影响力","企业更可信 · 客户更易成交"]},
+    {no:"肆", title:'现场还会<em>带你做什么</em>', icon:"assets/icon_chart.png",
+     points:["分析你的行业，适合哪种获客方法","拆解你的企业获客增长关键词","诊断你的企业当前获客现状","设计专属你企业的 AI 内容获客打法","输出一套可落地的获客增长方案"],
+     help:["不只是听","现场拿到可落地方案"]},
+  ],
+  audience:[["老","企业老板"],["厂","工厂老板"],["商","B端服务商"],["店","本地生活商家"],["美","美业·教育·餐饮"],["IP","想做博主 / IP"]],
+  gains:["全网霸屏获客逻辑","GEO 企业 AI 搜索优化","创始人 AI+IP 打造法","短视频远程矩阵打法","一次现场企业诊断","中午餐叙·资源对接"],
+  cta:{when:"6月6日 · 长沙", pricePre:"限时体验价", big:"99", unit:"元/人",
+       note:"原价 980 元 · 席位有限 · 报满即止", qrData:"https://example.com/enroll", qrLabel:"扫码报名 · 预留席位"},
+  slogan:"让客户搜索你 · 看见你 · 相信你",
+};
+
+const d=DATA, el=document.getElementById('wrap');
+const qr="https://api.qrserver.com/v1/create-qr-code/?size=260x260&margin=0&data="+encodeURIComponent(d.cta.qrData);
+let h="";
+h+=`<div class="brand"><div class="logo brush">${d.brand.logo}</div><div><div class="bn">${d.brand.name}</div><div class="bs">${d.brand.sub}</div></div></div>`;
+h+=`<div class="head"><div class="head-l">
+  <div class="t-pre">${d.titlePre}</div>
+  <div class="t-big heavy">${d.titleBig}</div>
+  <div class="t-banner">${d.banner}</div>
+  <div class="t-desc">${d.desc}</div>
+ </div>
+ <div class="head-r">
+   <div class="sp-frame"><img src="${d.speaker.img}"></div>
+   <div class="seal sp-seal brush">${d.speaker.seal}</div>
+   <div class="sp-name">${d.speaker.name}</div>
+   <div class="sp-cred">${d.speaker.cred}</div>
+ </div></div>`;
+h+=`<div class="price">`+d.price.map(c=>`<div class="cell"><div class="lab">${c.lab}</div><div class="v ${c.cls||''}">${c.v}</div></div>`).join('')
+  +`<div class="cell now"><div class="lab">${d.priceNow.lab}</div><div class="v"><span class="big">${d.priceNow.big}</span>${d.priceNow.unit}</div></div></div>`;
+h+=`<div class="incl"><b>${d.include}</b></div>`;
+d.sections.forEach(s=>{
+  h+=`<div class="sec"><div class="sec-h"><div class="sec-no">${s.no}</div><div class="sec-t">${s.title}</div></div>
+   <div class="sec-b"><ul class="sec-pts">${s.points.map(p=>`<li>${p}</li>`).join('')}</ul>
+   <div class="sec-side"><div class="icon-ring"><img src="${s.icon}"></div>
+     <div class="help"><span class="ht">帮 你 实 现</span><div class="hctx">${s.help[0]}</div>${s.help[1].split('·').map(x=>`<div class="harrow">→ ${x.trim()}</div>`).join('')}</div></div>
+   </div></div>`;
+});
+h+=`<div class="divider"><span>❖</span><span class="serif" style="font-size:24px;font-weight:900;color:var(--ink)">适合谁来听</span><span>❖</span></div>`;
+h+=`<div class="aud">`+d.audience.map(a=>`<div class="a"><div class="med">${a[0]}</div><div class="at">${a[1]}</div></div>`).join('')+`</div>`;
+h+=`<div class="divider"><span>❖</span><span class="serif" style="font-size:24px;font-weight:900;color:var(--ink)">你将获得</span><span>❖</span></div>`;
+h+=`<div class="gains"><ul style="display:contents">`+d.gains.map(g=>`<li>${g}</li>`).join('')+`</ul></div>`;
+h+=`<div class="cta"><div class="cta-l"><div class="cw">${d.cta.when}</div>
+   <div class="cp">${d.cta.pricePre} <span class="big">${d.cta.big}</span>${d.cta.unit}</div>
+   <div class="cn">${d.cta.note}</div></div>
+   <div class="qr"><div class="qbox"><img src="${qr}"></div><div>${d.cta.qrLabel}</div></div></div>`;
+h+=`<div class="slogan"><span class="s">${d.slogan}</span></div>`;
+el.innerHTML=h;
+document.fonts.ready.then(()=>{window.__fontsready=true;});
+</script>
+</body>
+</html>

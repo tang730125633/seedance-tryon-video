@@ -1,0 +1,19 @@
+Upload files for use in video creation
+
+Usage:
+  heygen asset [command]
+
+Available Commands:
+  create                 Upload Asset
+  delete                 Delete Asset
+  get                    Get Asset
+  complete create        Complete Asset Upload
+  direct-uploads create  Create Asset Upload
+  search list            Search assets (images and icons)
+
+Flags:
+  -h, --help   help for asset
+
+Global Flags:
+      --human   Display output as a formatted table instead of JSON
+Use "heygen asset [command] --help" for more information about a command.

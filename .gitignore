@@ -1,0 +1,38 @@
+.DS_Store
+__pycache__/
+*.pyc
+
+# Secrets
+.env
+.env.*
+secret*.env
+*_KEEP_SAFE.env
+99-敏感配置-勿上传/
+
+# Large generated media
+*.mp4
+*.mov
+*.m4v
+*.mp3
+*.wav
+*.m4a
+*.aac
+
+# Generated outputs / logs
+02-生成产出/
+03-成品交付/
+91-运行记录与调试/
+换装视频测试/
+测试111换装测试/
+*.json
+*.log
+*.out
+
+# Tool state
+.gstack/
+.claude/
+
+# Embedded third-party git repos (cloned upstream, not tracked here)
+90-AI脚本与代码/github_tryon_repos/CatV2TON/
+90-AI脚本与代码/github_tryon_repos/SwiftTry/
+github-export/seedance-video-tryon-playbook/

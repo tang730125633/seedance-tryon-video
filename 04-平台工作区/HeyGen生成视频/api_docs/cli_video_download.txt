@@ -1,0 +1,5 @@
+===== heygen video download --help =====
+{"error":{"code":"usage_error","message":"unknown command \"video download\" for \"heygen\""}}
+
+===== heygen video download --request-schema =====
+{"error":{"code":"usage_error","message":"unknown command \"video download\" for \"heygen\""}}

@@ -1,0 +1,21 @@
+Create videos from text prompts using AI
+
+Usage:
+  heygen video-agent [command]
+
+Available Commands:
+  create         Create Video Agent Session
+  get            Get Video Agent Session
+  list           List Video Agent Sessions
+  send           Send Message or Request Revision
+  stop           Stop Video Agent Session
+  resources get  Get Session Resource
+  styles list    List Video Agent Styles
+  videos list    List Session Videos
+
+Flags:
+  -h, --help   help for video-agent
+
+Global Flags:
+      --human   Display output as a formatted table instead of JSON
+Use "heygen video-agent [command] --help" for more information about a command.

@@ -1,0 +1,5 @@
+===== heygen user me get --help =====
+{"error":{"code":"usage_error","message":"unknown command \"user me get\" for \"heygen\""}}
+
+===== heygen user me get --request-schema =====
+{"error":{"code":"usage_error","message":"unknown command \"user me get\" for \"heygen\""}}

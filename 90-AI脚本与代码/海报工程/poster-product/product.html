@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --g1:#7cc24e; --g2:#56a233; --g3:#e9f5dc; --g4:#3f7d28; --gd:#2f5d20;
+  --gold:#c9a24a; --gold2:#e3c574; --ink:#2c3a23; --ink2:#6a7860; --paper:#f4fbec;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#888;}
+.sans{font-family:"Noto Sans SC",sans-serif;}
+.os{font-family:"Oswald",sans-serif;}
+.poster{width:824px;margin:0 auto;position:relative;color:var(--ink);overflow:hidden;
+  font-family:"Noto Sans SC","PingFang SC",sans-serif;
+  background:linear-gradient(165deg,#f3fbe9 0%,#e3f3d2 38%,#cfe9b6 72%,#bfe0a2 100%);}
+/* 顶部光晕 + 叶影氛围 */
+.poster::before{content:"";position:absolute;top:-180px;right:-120px;width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.55),transparent 65%);z-index:0;}
+.poster::after{content:"";position:absolute;bottom:-160px;left:-140px;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(86,162,51,.18),transparent 68%);z-index:0;}
+.wrap{position:relative;z-index:2;padding:0 0 40px;}
+
+/* 顶栏 */
+.top{display:flex;justify-content:space-between;align-items:center;padding:30px 44px 0;}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand .lf{width:46px;height:46px;border-radius:14px 14px 14px 4px;background:linear-gradient(145deg,var(--g1),var(--g4));
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 6px 14px rgba(63,125,40,.35);}
+.brand .bn{font-weight:900;font-size:21px;letter-spacing:1px;}
+.brand .bs{font-size:11px;color:var(--ink2);letter-spacing:3px;margin-top:2px;}
+.tagpill{background:rgba(255,255,255,.7);border:1px solid rgba(86,162,51,.35);color:var(--g4);
+  font-size:12px;font-weight:700;padding:7px 16px;border-radius:30px;letter-spacing:1px;}
+
+/* 主视觉 */
+.hero{display:flex;align-items:center;padding:24px 44px 8px;gap:6px;}
+.hero-l{flex:1;}
+.h-badge{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#5a4410;font-size:12.5px;font-weight:800;padding:6px 14px;border-radius:30px;letter-spacing:1px;box-shadow:0 4px 10px rgba(201,162,74,.35);}
+.h-name{font-size:46px;font-weight:900;line-height:1.12;margin:16px 0 4px;color:var(--gd);letter-spacing:1px;}
+.h-name em{font-style:normal;color:var(--g2);}
+.h-en{font-family:"Oswald",sans-serif;font-size:15px;font-weight:500;letter-spacing:2px;color:var(--ink2);text-transform:uppercase;}
+.cfu{display:flex;align-items:flex-end;gap:10px;margin-top:20px;}
+.cfu .num{font-family:"Oswald",sans-serif;font-weight:700;font-size:74px;line-height:.8;color:var(--g2);
+  text-shadow:2px 3px 0 rgba(86,162,51,.16);}
+.cfu .u{padding-bottom:8px;}
+.cfu .u b{display:block;font-size:22px;font-weight:900;color:var(--gd);}
+.cfu .u span{font-size:13px;color:var(--ink2);}
+.h-sub{margin-top:14px;font-size:15px;color:var(--ink2);line-height:1.7;}
+.h-sub b{color:var(--g4);}
+.hero-r{width:368px;flex:none;position:relative;}
+.hero-r .pcard{border-radius:24px;overflow:hidden;box-shadow:0 18px 40px rgba(63,125,40,.28);border:5px solid #fff;}
+.hero-r .pcard img{width:100%;display:block;}
+.hero-r .float{position:absolute;left:-14px;bottom:30px;background:#fff;border-radius:16px;padding:10px 16px;
+  box-shadow:0 10px 24px rgba(63,125,40,.22);text-align:center;}
+.hero-r .float b{display:block;font-family:"Oswald";font-size:26px;color:var(--g2);}
+.hero-r .float span{font-size:11px;color:var(--ink2);}
+
+/* 卖点 */
+.sec-title{text-align:center;margin:34px 0 18px;}
+.sec-title .t{font-size:27px;font-weight:900;color:var(--gd);letter-spacing:1px;}
+.sec-title .t i{color:var(--g2);margin:0 4px;}
+.sec-title .s{font-size:13px;color:var(--ink2);margin-top:5px;letter-spacing:2px;}
+.feats{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0 44px;}
+.feat{background:rgba(255,255,255,.78);border:1px solid rgba(86,162,51,.25);border-radius:18px;padding:18px;
+  display:flex;gap:14px;align-items:flex-start;box-shadow:0 8px 20px rgba(86,162,51,.1);backdrop-filter:blur(2px);}
+.feat .fi{width:52px;height:52px;flex:none;border-radius:14px;background:linear-gradient(145deg,var(--g3),#d3ecbc);
+  color:var(--g2);display:flex;align-items:center;justify-content:center;font-size:24px;}
+.feat .ft{font-size:17px;font-weight:800;color:var(--gd);}
+.feat .fd{font-size:12.5px;color:var(--ink2);line-height:1.65;margin-top:4px;}
+
+/* 适用场景 */
+.scene{display:flex;justify-content:center;gap:34px;padding:26px 44px 4px;}
+.scene .sc{text-align:center;}
+.scene .sc .ci{width:58px;height:58px;border-radius:50%;background:#fff;border:2px solid var(--g1);color:var(--g2);
+  display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto;box-shadow:0 6px 14px rgba(86,162,51,.18);}
+.scene .sc .cn{font-size:13px;font-weight:700;color:var(--ink);margin-top:8px;}
+
+/* 规格条 */
+.spec{margin:28px 44px 0;background:linear-gradient(135deg,var(--g2),var(--g4));border-radius:18px;
+  padding:18px 24px;display:flex;justify-content:space-around;align-items:center;color:#fff;box-shadow:0 12px 26px rgba(63,125,40,.32);}
+.spec .sp{text-align:center;}
+.spec .sp .l{font-size:12px;opacity:.85;}
+.spec .sp .v{font-size:18px;font-weight:800;margin-top:3px;}
+.spec .sp .v b{font-family:"Oswald";font-size:24px;}
+.spec .dv{width:1px;height:34px;background:rgba(255,255,255,.3);}
+
+/* CTA */
+.cta{margin:26px 44px 0;background:rgba(255,255,255,.82);border:1px solid rgba(86,162,51,.3);border-radius:20px;
+  padding:20px 24px;display:flex;align-items:center;gap:20px;box-shadow:0 10px 26px rgba(86,162,51,.14);}
+.cta-l{flex:1;}
+.cta .ct{font-size:23px;font-weight:900;color:var(--gd);}
+.cta .cs{font-size:13px;color:var(--ink2);margin-top:6px;line-height:1.6;}
+.cta .endo{display:inline-block;margin-top:8px;font-size:11.5px;color:var(--g4);background:var(--g3);padding:4px 10px;border-radius:20px;}
+.cta .qr{flex:none;text-align:center;}
+.cta .qr img{width:104px;height:104px;border-radius:10px;border:3px solid var(--g3);}
+.cta .qr div{font-size:11px;color:var(--ink2);margin-top:5px;}
+
+.foot{text-align:center;margin-top:26px;}
+.foot .sl{font-size:30px;font-weight:900;color:var(--g2);letter-spacing:3px;}
+.foot .sl i{color:var(--gold);}
+.foot .fn{font-size:11px;color:var(--ink2);margin-top:10px;letter-spacing:1px;}
+</style>
+</head>
+<body>
+<div class="poster" id="poster">
+  <div class="wrap">
+    <div class="top">
+      <div class="brand"><div class="lf"><i class="fa-solid fa-seedling"></i></div>
+        <div><div class="bn">干益活生源<sup style="font-size:11px">®</sup></div><div class="bs">GANYI HUOSHENGYUAN</div></div></div>
+      <div class="tagpill"><i class="fa-solid fa-certificate"></i> 特殊膳食 · 医研联合研发</div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-l">
+        <span class="h-badge"><i class="fa-solid fa-bolt"></i> 运动营养食品 · 耐力类</span>
+        <div class="h-name">复合乳酸菌<br><em>冻干粉</em></div>
+        <div class="h-en">Composite Lactobacillus Freeze-Dried Powder</div>
+        <div class="cfu"><div class="num">4000</div><div class="u"><b>亿 CFU</b><span>高浓度复合活菌</span></div></div>
+        <div class="h-sub">每袋 <b>2g</b> 独立锁鲜 · 冻干工艺保护活菌<br>由内而外，<b>呵护肠道 · 助力耐力</b></div>
+      </div>
+      <div class="hero-r">
+        <div class="pcard"><img src="assets/product.jpg"></div>
+        <div class="float"><b>2g×20</b><span>独立便携袋</span></div>
+      </div>
+    </div>
+
+    <div class="sec-title"><div class="t">为什么选 <i class="fa-solid fa-leaf"></i> 干益活生源</div><div class="s">CORE ADVANTAGES · 五大核心优势</div></div>
+    <div class="feats" id="feats"></div>
+
+    <div class="scene" id="scene"></div>
+
+    <div class="spec">
+      <div class="sp"><div class="l">净含量</div><div class="v"><b>40</b>克</div></div><div class="dv"></div>
+      <div class="sp"><div class="l">规格</div><div class="v">2克 × 20袋</div></div><div class="dv"></div>
+      <div class="sp"><div class="l">食用</div><div class="v">每日 1 袋</div></div><div class="dv"></div>
+      <div class="sp"><div class="l">分类</div><div class="v">运动营养·耐力类</div></div>
+    </div>
+
+    <div class="cta">
+      <div class="cta-l">
+        <div class="ct">肠道活力，从一袋开始</div>
+        <div class="cs">冲泡即饮 / 直接含服，温水送服更佳<br>适合运动、熬夜、肠胃敏感人群日常养护</div>
+        <span class="endo"><i class="fa-solid fa-microscope"></i> 华夏华医联合创新医药研究院 联合研发</span>
+      </div>
+      <div class="qr"><img id="qr"><div><i class="fa-brands fa-weixin" style="color:#09b83e"></i> 微信扫码 · 选购咨询</div></div>
+    </div>
+
+    <div class="foot"><div class="sl">由内而外 <i class="fa-solid fa-leaf"></i> 活力每一天</div>
+      <div class="fn">干益活生源® · 复合乳酸菌冻干粉 · 运动营养食品（耐力类）</div></div>
+  </div>
+</div>
+<script>
+const FEATS=[
+  ["fa-shield-virus","4000亿高浓活菌","复合乳酸菌配方，高 CFU 添加，给肠道充足好菌"],
+  ["fa-person-running","助力运动耐力","针对耐力运动场景，调节肠道、支持体能与恢复"],
+  ["fa-heart-pulse","平衡肠道菌群","呵护肠道微生态，改善吸收，由内提升状态"],
+  ["fa-snowflake","冻干锁活工艺","低温冻干保护活菌，2g 独立小袋，锁鲜便携"],
+];
+const SCENE=[["fa-dumbbell","运动健身"],["fa-moon","熬夜应酬"],["fa-utensils","肠胃敏感"],["fa-mug-hot","日常养护"]];
+document.getElementById('feats').innerHTML=FEATS.map(f=>`<div class="feat"><div class="fi"><i class="fa-solid ${f[0]}"></i></div><div><div class="ft">${f[1]}</div><div class="fd">${f[2]}</div></div></div>`).join('');
+document.getElementById('scene').innerHTML=SCENE.map(s=>`<div class="sc"><div class="ci"><i class="fa-solid ${s[0]}"></i></div><div class="cn">${s[1]}</div></div>`).join('');
+document.getElementById('qr').src="assets/qr_wechat.jpg";
+document.fonts.ready.then(()=>{window.__fontsready=true;});
+</script>
+</body>
+</html>

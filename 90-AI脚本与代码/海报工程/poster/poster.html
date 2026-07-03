@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;700;900&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --paper:#f3e4c4; --ink:#241f18; --ink2:#534a3c; --mist:#857a6a;
+  --red:#9c1318; --red2:#6f0c10; --redbright:#c2272d;
+  --gold:#b8893f; --gold2:#d9b771; --line:rgba(150,110,55,.5);
+  --card:rgba(241,228,199,.86);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#777;}
+.brush{font-family:"Ma Shan Zheng","Songti SC",serif;}
+.kuai{font-family:"ZCOOL KuaiLe","Ma Shan Zheng",serif;}
+.serif{font-family:"Noto Serif SC","Songti SC",serif;}
+.heavy{font-family:"Noto Serif SC","Songti SC",serif;font-weight:900;}
+.poster{width:824px;margin:0 auto;position:relative;color:var(--ink);
+  background:var(--paper) url(assets/bg_full.png) top center/824px auto no-repeat;
+  font-family:"PingFang SC","Hiragino Sans GB","Heiti SC",sans-serif;overflow:hidden;}
+.poster::before{content:"";position:absolute;left:0;right:0;top:1150px;bottom:0;z-index:0;
+  background:url(assets/bg_full.png) bottom center/824px auto no-repeat;opacity:.18;transform:scaleY(-1);}
+.poster::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 42%,rgba(160,110,45,.05) 72%,rgba(110,65,18,.1));}
+.frame{position:absolute;inset:14px;border:1.5px solid var(--red);z-index:6;pointer-events:none;}
+.frame::after{content:"";position:absolute;inset:4px;border:1px solid var(--gold2);}
+.corner{position:absolute;width:30px;height:30px;z-index:7;border:3px solid var(--red);}
+.corner.tl{top:14px;left:14px;border-right:0;border-bottom:0;}
+.corner.tr{top:14px;right:14px;border-left:0;border-bottom:0;}
+.corner.bl{bottom:14px;left:14px;border-right:0;border-top:0;}
+.corner.br{bottom:14px;right:14px;border-left:0;border-top:0;}
+.wrap{position:relative;z-index:2;padding:34px 40px 0;}
+
+/* 牌匾标题 */
+.plaque{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,var(--redbright),var(--red2));
+  color:#fde7c0;font-family:"Noto Serif SC",serif;font-weight:900;font-size:24px;letter-spacing:3px;
+  padding:9px 34px;border-radius:8px;position:relative;box-shadow:0 4px 0 rgba(111,12,16,.4);
+  border:1px solid var(--gold2);}
+.plaque::before,.plaque::after{font-family:"Font Awesome 6 Free";font-weight:900;content:"\f0d8";color:var(--gold2);font-size:13px;opacity:.8;}
+.plaque-wrap{text-align:center;margin:34px 0 18px;}
+
+/* 品牌 */
+.brand{display:flex;align-items:center;gap:10px;position:relative;z-index:3;}
+.brand .logo{width:42px;height:42px;border-radius:7px;background:var(--red);color:#f7e3bd;
+  display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 2px var(--gold2);font-size:22px;}
+.brand .bn{font-weight:900;font-size:19px;letter-spacing:1px;}
+.brand .bs{font-size:11px;color:var(--mist);letter-spacing:4px;margin-top:2px;}
+
+/* 头部：左右两栏，彻底隔开标题与讲师 */
+.head{display:flex;align-items:flex-start;margin-top:16px;min-height:430px;}
+.head-l{width:436px;flex:none;padding-top:4px;}
+.head-r{flex:1;position:relative;align-self:stretch;min-height:452px;}
+.speaker{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
+.speaker img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 30%);mask-image:linear-gradient(90deg,transparent,#000 30%);}
+.sp-meta{position:absolute;top:26px;left:0;z-index:3;writing-mode:vertical-rl;height:340px;}
+.sp-meta .nm{font-family:"Ma Shan Zheng",serif;font-size:26px;color:var(--ink);letter-spacing:3px;}
+.sp-meta .nm b{color:var(--red);font-size:32px;}
+.sp-meta .cr{font-size:13px;color:var(--ink2);letter-spacing:2px;line-height:1.7;}
+.t-pre{font-size:30px;font-weight:900;letter-spacing:2px;font-family:"Noto Serif SC",serif;color:var(--ink);}
+.t-big{font-size:62px;line-height:1.04;margin:8px 0 0;font-weight:900;font-family:"Noto Serif SC",serif;letter-spacing:1px;
+  text-shadow:2px 3px 0 rgba(110,65,18,.18);white-space:nowrap;}
+.t-big em{font-style:normal;font-family:"Ma Shan Zheng",serif;font-weight:400;font-size:70px;
+  background:linear-gradient(180deg,#d8302f,#8c1014);-webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:3px 4px 0 rgba(124,14,18,.22);padding:0 4px;}
+.t-banner{display:inline-block;background:linear-gradient(180deg,var(--redbright),var(--red2));color:#fdeccb;
+  font-size:21px;font-weight:800;letter-spacing:2px;padding:9px 22px;margin-top:20px;white-space:nowrap;
+  box-shadow:0 4px 0 rgba(111,12,16,.4);clip-path:polygon(0 0,100% 0,calc(100% - 16px) 100%,0 100%);}
+.t-desc{font-size:15px;color:var(--ink2);line-height:1.8;margin-top:18px;max-width:430px;letter-spacing:.5px;}
+
+/* 价格条 */
+.price{display:flex;align-items:stretch;margin:6px 0 0;background:rgba(247,238,218,.9);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(120,90,40,.12);position:relative;z-index:2;}
+.price .cell{flex:1;padding:13px 8px;text-align:center;border-right:1px dashed var(--line);}
+.price .cell:last-child{border-right:0;}
+.price .ic{color:var(--red);font-size:19px;margin-bottom:5px;}
+.price .lab{font-size:12px;color:var(--mist);}
+.price .v{font-size:16px;font-weight:800;margin-top:2px;}
+.price .v.old{color:#a89c86;text-decoration:line-through;font-weight:600;}
+.price .now{background:linear-gradient(180deg,#fff3da,#ffe6c2);flex:1.25;}
+.price .now .big{font-family:"Ma Shan Zheng",serif;font-size:42px;color:var(--red);line-height:.9;}
+.price .now .v{color:var(--red);}
+.price .inc .v{font-size:11.5px;font-weight:700;line-height:1.5;color:var(--ink2);}
+
+/* 版块 */
+.sec{position:relative;z-index:2;margin-top:18px;background:var(--card);border:1px solid var(--line);
+  border-radius:12px;padding:16px 20px 18px;box-shadow:0 3px 12px rgba(120,90,40,.15);}
+.sec::before,.sec::after{content:"";position:absolute;width:16px;height:16px;border:2px solid var(--gold);}
+.sec::before{top:7px;left:7px;border-right:0;border-bottom:0;}
+.sec::after{bottom:7px;right:7px;border-left:0;border-top:0;}
+.sec-t{font-size:25px;font-weight:900;font-family:"Noto Serif SC",serif;color:var(--red);
+  letter-spacing:1px;margin-bottom:6px;display:flex;align-items:baseline;gap:4px;}
+.sec-t .no{color:var(--red);}
+.sec-t .tt{color:var(--ink);}
+.sec-t .tt em{color:var(--red);font-style:normal;}
+.sec-intro{font-size:13px;color:var(--mist);margin-bottom:8px;}
+.sec-b{display:flex;gap:16px;}
+.sec-ic{width:118px;flex:none;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;}
+.sec-ic img{width:112px;height:112px;object-fit:contain;filter:drop-shadow(0 3px 6px rgba(120,90,40,.25));}
+.sec-pts{flex:1;}
+.sec-pts li{list-style:none;font-size:13.5px;line-height:1.95;color:#352f27;display:flex;gap:7px;align-items:baseline;}
+.sec-pts li i{color:var(--red);font-size:13px;flex:none;}
+.help{width:158px;flex:none;}
+.help .ht{color:var(--red);font-weight:900;font-size:15px;font-family:"Noto Serif SC",serif;margin-bottom:6px;letter-spacing:1px;}
+.help .hctx{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.help .harrow{font-size:14px;color:var(--red2);font-weight:700;line-height:1.95;}
+.help .harrow i{font-size:11px;margin-right:5px;}
+
+/* 适合谁 */
+.aud{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 10px;position:relative;z-index:2;}
+.aud .a{display:flex;flex-direction:column;align-items:center;gap:8px;}
+.aud .ai{width:62px;height:62px;border-radius:50%;background:rgba(156,19,24,.08);border:1.5px solid var(--red);
+  display:flex;align-items:center;justify-content:center;color:var(--red);font-size:27px;}
+.aud .at{font-size:13px;font-weight:700;color:var(--ink);text-align:center;line-height:1.3;}
+
+/* 你将获得 */
+.gains{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 22px;
+  display:grid;grid-template-columns:1fr 1fr;gap:2px 26px;position:relative;z-index:2;box-shadow:0 3px 12px rgba(120,90,40,.15);}
+.gains .g{font-size:14px;line-height:2.0;font-weight:600;color:#352f27;display:flex;gap:8px;align-items:baseline;}
+.gains .g i{color:var(--red);font-size:14px;flex:none;}
+
+/* CTA */
+.cta{position:relative;z-index:2;margin-top:30px;background:linear-gradient(135deg,#b01c22,#7c0e12);
+  border-radius:16px;padding:22px 24px;color:#fdeccb;display:flex;align-items:center;gap:20px;
+  box-shadow:0 6px 22px rgba(124,14,18,.42);border:1px solid var(--gold2);}
+.cta::before{content:"";position:absolute;inset:6px;border:1px solid rgba(217,183,113,.5);border-radius:11px;pointer-events:none;}
+.cta-l{flex:1;}
+.cta .cw{font-family:"Ma Shan Zheng",serif;font-size:34px;letter-spacing:2px;color:#ffe6b0;}
+.cta .cp{margin-top:6px;font-size:15px;}
+.cta .cp .pre{background:#fdeccb;color:var(--red2);font-weight:800;padding:2px 8px;border-radius:4px;font-size:13px;}
+.cta .cp .big{font-family:"Ma Shan Zheng",serif;font-size:56px;color:#ffd97a;vertical-align:-8px;margin:0 2px;}
+.cta .cn{font-size:12px;opacity:.92;margin-top:7px;letter-spacing:1px;}
+.cta .qr{flex:none;text-align:center;}
+.cta .qr .qbox{background:#fff7ea;padding:7px;border-radius:9px;box-shadow:inset 0 0 0 2px var(--gold2);}
+.cta .qr img{width:108px;height:108px;display:block;}
+.cta .qr div{font-size:12px;margin-top:6px;}
+
+.slogan{text-align:center;margin:30px 0 0;padding-bottom:38px;position:relative;z-index:2;white-space:nowrap;}
+.slogan .s{font-family:"Ma Shan Zheng",serif;font-size:42px;color:var(--red);letter-spacing:4px;
+  text-shadow:1px 2px 0 rgba(124,14,18,.2);}
+</style>
+</head>
+<body>
+<div class="poster" id="poster">
+  <div class="frame"></div>
+  <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+  <div class="wrap" id="wrap"></div>
+</div>
+<script>
+const DATA = {
+  brand:{name:"数影AI科技", sub:"S H U Y I N G", logo:"影"},
+  titlePre:"企业老板必须听的",
+  titleBig:'一堂<em>AI获客</em>课',
+  banner:"让客户搜索你 · 看见你 · 相信你",
+  desc:"从搜索曝光，到 AI 推荐，再到老板 IP 成交，<br>系统打通企业获客增长的全新入口。",
+  speaker:{img:"assets/speaker_final.png", name:'主讲：<b>泽龙</b>',
+    cred:"数影人工智能科技创始人 · 15年营销落地经验 · AI流量获客导师"},
+  price:[{ic:"fa-clock",lab:"时间",v:"6月6日 周六"},{ic:"fa-location-dot",lab:"地点",v:"长 沙"},
+        {ic:"fa-tag",lab:"原价",v:"980元",cls:"old"}],
+  priceNow:{ic:"fa-fire",lab:"本次体验价",big:"99",unit:"元/人"},
+  priceInc:{ic:"fa-gift",lab:"包含",v:"中午聚餐+线下实操<br>交流+现场诊断"},
+  sections:[
+    {no:"一、",t:'数影霸屏：<em>让客户一搜行业，就能看到你</em>',intro:"很多企业不是产品不好，而是客户根本搜不到你。",icon:"assets/icon_search.png",
+     pts:["百度·抖音·小红书·视频号 多平台占位逻辑","企业如何做关键词霸屏","如何布局品牌词·产品词·行业词·痛点词","如何低成本提升企业曝光","如何让客户搜索时优先看到你的内容"],
+     help:["客户搜行业",["看见你","了解你","咨询你"]]},
+    {no:"二、",t:'GEO：<em>让 AI 推荐你的企业和产品</em>',intro:"未来客户不只搜索，还会直接问 AI。被 AI 回答，是新流量入口。",icon:"assets/icon_ai.png",
+     pts:["什么是 GEO 生成式引擎优化","DeepSeek·豆包·文心·通义·元宝 的推荐逻辑","企业如何建立 AI 能识别的知识库","如何让 AI 更易理解你的产品·案例·优势","如何布局 AI 问答场景，提高被推荐概率"],
+     help:["客户问 AI",["AI 知道你","AI 推荐你","客户来咨询"]]},
+    {no:"三、",t:'创始人 AI+IP：<em>老板亲自成为流量入口</em>',intro:"现在成交越来越难，本质是信任越来越贵。",icon:"assets/speaker_half.png",
+     pts:["创始人 IP 如何定位","老板短视频内容怎么拍","如何用 AI 快速生成口播文案","如何打造专业可信的人设","如何把个人 IP 转化成企业客户线索"],
+     help:["老板有影响力",["企业有信任感","客户更易成交"]]},
+    {no:"四、",t:'现场<em>还会做什么？</em>',intro:"这不是只听理论的课，现场直接帮你诊断与落地。",icon:"assets/icon_chart.png",
+     pts:["分析你的行业适不适合做霸屏","拆解你的客户会搜索哪些关键词","诊断你的企业在 AI 平台有没有曝光","设计你的创始人 IP 内容方向","给你一套可执行的获客动作"],
+     help:["不只是听",["现场诊断","拿走方案"]]},
+  ],
+  audience:[["fa-user-tie","企业老板"],["fa-industry","工厂老板"],["fa-handshake","B端服务商"],["fa-store","本地生活商家"],
+            ["fa-spa","美业·教育·餐饮"],["fa-bullhorn","想做短视频获客"],["fa-robot","想被AI推荐"],["fa-video","想打造老板IP"]],
+  gains:["一套全网霸屏获客逻辑","一套 GEO 企业AI搜索优化方法","一套创始人 AI+IP 打造方法","一套关键词布局思路","一次现场企业诊断机会","中午聚餐·资源链接对接"],
+  cta:{when:"6月6日 · 长沙", pre:"限时体验价", big:"99", unit:"元/人",
+       note:"原价980元 · 席位有限 · 适合带着问题来，现场拿走方法", qrData:"https://example.com/enroll", qrLabel:"扫码报名 · 预留席位"},
+  slogan:"让客户搜索你 · 看见你 · 相信你",
+};
+const d=DATA, el=document.getElementById('wrap');
+const qr="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&data="+encodeURIComponent(d.cta.qrData);
+let h="";
+h+=`<div class="brand"><div class="logo brush">${d.brand.logo}</div><div><div class="bn">${d.brand.name}</div><div class="bs">${d.brand.sub}</div></div></div>`;
+h+=`<div class="head">
+  <div class="head-l">
+    <div class="t-pre">${d.titlePre}</div>
+    <div class="t-big">${d.titleBig}</div>
+    <div class="t-banner">${d.banner}</div>
+    <div class="t-desc">${d.desc}</div>
+  </div>
+  <div class="head-r">
+    <div class="speaker"><img src="${d.speaker.img}"></div>
+    <div class="sp-meta"><div class="nm">${d.speaker.name}</div><div class="cr">数影人工智能科技创始人　15年营销落地经验　AI流量获客导师</div></div>
+  </div>
+</div>`;
+h+=`<div class="price">`+d.price.map(c=>`<div class="cell"><div class="ic"><i class="fa-solid ${c.ic}"></i></div><div class="lab">${c.lab}</div><div class="v ${c.cls||''}">${c.v}</div></div>`).join('')
+ +`<div class="cell now"><div class="ic"><i class="fa-solid ${d.priceNow.ic}"></i></div><div class="lab">${d.priceNow.lab}</div><div class="v"><span class="big">${d.priceNow.big}</span>${d.priceNow.unit}</div></div>`
+ +`<div class="cell inc"><div class="ic"><i class="fa-solid ${d.priceInc.ic}"></i></div><div class="lab">${d.priceInc.lab}</div><div class="v">${d.priceInc.v}</div></div></div>`;
+d.sections.forEach(s=>{
+  h+=`<div class="sec"><div class="sec-t"><span class="no">${s.no}</span><span class="tt">${s.t}</span></div>
+   <div class="sec-intro">${s.intro}</div>
+   <div class="sec-b">
+     <div class="sec-ic"><img src="${s.icon}"></div>
+     <ul class="sec-pts">${s.pts.map(p=>`<li><i class="fa-solid fa-circle-check"></i><span>${p}</span></li>`).join('')}</ul>
+     <div class="help"><div class="ht">帮你实现</div><div class="hctx">${s.help[0]}</div>${s.help[1].map(x=>`<div class="harrow"><i class="fa-solid fa-arrow-right-long"></i>${x}</div>`).join('')}</div>
+   </div></div>`;
+});
+h+=`<div class="plaque-wrap"><span class="plaque">适合谁来听</span></div>`;
+h+=`<div class="aud">`+d.audience.map(a=>`<div class="a"><div class="ai"><i class="fa-solid ${a[0]}"></i></div><div class="at">${a[1]}</div></div>`).join('')+`</div>`;
+h+=`<div class="plaque-wrap"><span class="plaque">你将获得</span></div>`;
+h+=`<div class="gains">`+d.gains.map(g=>`<div class="g"><i class="fa-solid fa-circle-check"></i><span>${g}</span></div>`).join('')+`</div>`;
+h+=`<div class="cta"><div class="cta-l"><div class="cw">${d.cta.when}</div>
+   <div class="cp"><span class="pre">${d.cta.pre}</span> <span class="big">${d.cta.big}</span>${d.cta.unit}</div>
+   <div class="cn">${d.cta.note}</div></div>
+   <div class="qr"><div class="qbox"><img src="${qr}"></div><div>${d.cta.qrLabel}</div></div></div>`;
+h+=`<div class="slogan"><span class="s">${d.slogan}</span></div>`;
+el.innerHTML=h;
+document.fonts.ready.then(()=>{window.__fontsready=true;});
+</script>
+</body>
+</html>

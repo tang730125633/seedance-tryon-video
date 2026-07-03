@@ -14,7 +14,7 @@ The current production baseline is RunningHub two-stage generation:
 1. Try-on with `视频换装V2 Animate Wan2.2=B站艾橘溪`.
 2. Background replacement with `VideoRefusion 动态替换视频背景`.
 
-Read `references/runninghub-workflow.md` before executing production. Read `references/long-video-boundaries.md` when videos are longer than 6 seconds or the user says "一次性生成". Read `references/handoff-template.md` when preparing notes for another AI.
+Read `references/runninghub-workflow.md` before executing production. Read `references/long-video-boundaries.md` when videos are longer than 6 seconds or the user says "一次性生成". Read `references/handoff-template.md` when preparing notes for another AI. Read `references/工作流原理.md` to understand why the pipeline is two-stage and how each model (Wan2.2 Animate try-on, VideoRefusion background) works.
 
 ## Critical Rules
 

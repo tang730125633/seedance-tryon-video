@@ -36,3 +36,6 @@ secret*.env
 90-AI脚本与代码/github_tryon_repos/CatV2TON/
 90-AI脚本与代码/github_tryon_repos/SwiftTry/
 github-export/seedance-video-tryon-playbook/
+
+# 打包产物（可从 skill-dist/seedance-tryon-video/ 源码重新生成）
+skill-dist/*.skill

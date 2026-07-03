@@ -1,0 +1,3 @@
+display_name: Seedance Try-On Video
+short_description: Run and document Seedance真人视频 clothing and background replacement workflows.
+default_prompt: Use the Seedance try-on video workflow to inspect client source videos, build a safe RunningHub manifest, run try-on and background replacement, QA durations and identity, and document any one-shot or long-video limitations.

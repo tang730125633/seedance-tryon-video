@@ -1,0 +1,2 @@
+file '/Users/xlzj/Desktop/Seedance真人视频-美业活动/还有两个视频/批量输出-2女生换装换背景-长版/客户02/03_background_chunks/bg_chunk_01_output/WanVideoWrapper_VACE_startendframe_00001_p86-audio_udmfq_1783087288.mp4'
+file '/Users/xlzj/Desktop/Seedance真人视频-美业活动/还有两个视频/批量输出-2女生换装换背景-长版/客户02/03_background_chunks/bg_chunk_02_output/WanVideoWrapper_VACE_startendframe_00002_p86-audio_klegl_1783087620.mp4'
